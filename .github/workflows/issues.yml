@@ -1,0 +1,10 @@
+name: issue details
+on:
+  issues:
+    types: opened
+jobs:
+  print-detail:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Detail Summary
+      - run: echo 'detail-${{ github.event.issue.issue_dependencies_summary }}'
