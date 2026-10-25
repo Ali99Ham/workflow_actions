@@ -1,0 +1,35 @@
+name: Deployment Project
+on:
+  workflow_dispatch
+  # push:
+  #   branches:
+  #     - main
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v7
+      - name: Install node
+        uses: actions/setup-node@v7
+        with:
+          node-version: v26
+      - name: Install Dependency
+        run: npm ci
+      - name: Run test
+        run: npm test
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v7
+      - name: Install node
+        uses: actions/setup-node@v7
+        with:
+          node-version: v26
+      - name: Install Dependency
+        run: npm ci
+      - name: Build Project
+        run: npm run build
+      - name: Deploy
+        run: echo "deploy"
