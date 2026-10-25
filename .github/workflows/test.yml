@@ -9,7 +9,7 @@ jobs:
       - name: Copy Code
         uses: actions/checkout@v7
       - name: Install Node.js
-        uses: actions/setup-node@7
+        uses: actions/setup-node@v7
         with:
           node-version: v22
       - name: Install Deps
