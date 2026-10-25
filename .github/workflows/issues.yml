@@ -6,5 +6,5 @@ jobs:
   print-detail:
     runs-on: ubuntu-latest
     steps:
-      - name: Run dependencies Summary
-        run: echo "detail-${{ github.event.issue.issue_dependencies_summary }}"
+      - name: Output event detail
+        run: echo "${{ toJson(github.event) }}"
