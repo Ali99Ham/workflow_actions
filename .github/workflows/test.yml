@@ -36,6 +36,7 @@ jobs:
           path: dist
 
   output:
+    needs: ci
     runs-on: ubuntu-latest
     steps:
       - name: download-artifact
