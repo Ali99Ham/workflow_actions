@@ -34,3 +34,13 @@ jobs:
         with:
           name: dist-files
           path: dist
+
+  output:
+    runs-on: ubuntu-latest
+    steps:
+      - name: download-artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dist-files
+      - name: ls
+        run: ls
