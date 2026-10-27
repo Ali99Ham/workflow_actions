@@ -1,5 +1,7 @@
 name: CI
-
+env:
+  NODE_VERSION: "v26"
+  NODE_ENV: "Development"
 on:
   push:
     branches: [main]
@@ -31,6 +33,11 @@ jobs:
 
       - name: Run Tests
         run: npm test
+
+      - name: Print Env Value
+        run: |
+          echo "$NODE_ENV"
+          echo ${{ env.NODE_VERSION }}
 
       - name: Build Application
         run: npm run build
