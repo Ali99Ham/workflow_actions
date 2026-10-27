@@ -2,6 +2,7 @@ name: CI
 env:
   NODE_VERSION: "v26"
   NODE_ENV: "Development"
+  PASSWORD: ${{ secrets.PASSWORD }}
 on:
   push:
     branches: [main]
@@ -38,6 +39,7 @@ jobs:
         run: |
           echo "$NODE_ENV"
           echo ${{ env.NODE_VERSION }}
+          echo $PASSWORD
 
       - name: Build Application
         run: npm run build
