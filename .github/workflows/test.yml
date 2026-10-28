@@ -21,7 +21,7 @@ jobs:
         with:
           node-version: "22"
 
-      - name: Cache Install
+      - name: Cache Dep
         uses: actions/cache@v6
         id: cache
         with:
@@ -29,8 +29,7 @@ jobs:
           key: node-modules-${{ hashFiles('**/package-lock.json') }}
 
       - name: Install Dependencies
-        id: install-dep
-        if: steps.cache.outcome.cache-hit != 'true'
+        if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
 
       - name: Run ESLint
