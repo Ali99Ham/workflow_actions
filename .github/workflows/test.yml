@@ -8,6 +8,7 @@ on:
     branches: [main]
 jobs:
   ci:
+    environment: TESTING
     runs-on: ubuntu-latest
     outputs:
       release-name: "${{ steps.version.outputs.app_version }}"
@@ -33,7 +34,12 @@ jobs:
         run: npm run lint
 
       - name: Run Tests
+        id: test-run
         run: npm test
+
+      - name: Check test condition
+        if: failure() && steps.test-run.outcome == 'failure'
+        run: echo "test not uploaded"
 
       - name: Print Env Value
         run: |
