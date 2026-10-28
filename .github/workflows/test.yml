@@ -23,11 +23,13 @@ jobs:
 
       - name: Cache Install
         uses: actions/cache@v6
+        id: cache
         with:
           path: ~/.npm
           key: node-modules-${{ hashFiles('**/package-lock.json') }}
 
       - name: Install Dependencies
+        if: steps.cache.outcome.cache-hit != 'true'
         run: npm ci
 
       - name: Run ESLint
