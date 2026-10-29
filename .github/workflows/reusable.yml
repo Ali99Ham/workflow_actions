@@ -7,9 +7,18 @@ on:
         description: testing input var
         required: false
         default: var_test
+    secrets:
+      DB_URL:
+        required: true
+    outputs:
+      my-value:
+        description: a returned value from the reusable workflow
+        value: ${{ jobs.build.outputs.my-value-job-output }}
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      my-value-job-output: ${{ steps.my-step-generating-value.outputs.my-step-value }}
     steps:
       - name: Get code
         uses: actions/checkout@v7
@@ -20,6 +29,7 @@ jobs:
       - name: Install Dep
         run: npm ci
       - name: printing inputs
-        run: echo "${{ inputs.myVar }}"
+        id: my-step-generating-value
+        run: echo "my-step-value=${{ inputs.myVar }}" >> "$GITHUB_OUTPUT"
       - name: Build Project
         run: echo "building..."

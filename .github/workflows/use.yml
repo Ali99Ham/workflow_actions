@@ -5,3 +5,10 @@ jobs:
     uses: ./.github/workflows/reusable.yml
     with:
       myVar: var_from_calling
+    secrets:
+      DB_URL: ${{ secrets.PASSWORD }}
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: print outputs from reusable workflow
+        run: echo "${{ needs.build.outputs.my-value }}"
