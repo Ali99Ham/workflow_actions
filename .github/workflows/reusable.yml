@@ -1,5 +1,12 @@
 name: reusable
-on: workflow_call
+on:
+  workflow_call:
+    inputs:
+      myVar:
+        type: string
+        description: testing input var
+        required: false
+        default: var_test
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -12,5 +19,7 @@ jobs:
           node-version: 22
       - name: Install Dep
         run: npm ci
+      - name: printing inputs
+        run: echo "${{ inputs.myVar }}"
       - name: Build Project
         run: echo "building..."

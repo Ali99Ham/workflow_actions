@@ -3,3 +3,5 @@ on: push
 jobs:
   build:
     uses: ./.github/workflows/reusable.yml
+    with:
+      myVar: var_from_calling
