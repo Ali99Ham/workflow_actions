@@ -5,7 +5,7 @@ env:
   PASSWORD: ${{ secrets.PASSWORD }}
 on:
   push:
-    branches: [main]
+    branches: [mainsss]
 jobs:
   ci:
     environment: TESTING
@@ -25,7 +25,7 @@ jobs:
         uses: actions/cache@v6
         id: cache
         with:
-          path: ~/.npm
+          path: node_modules
           key: node-modules-${{ hashFiles('**/package-lock.json') }}
 
       - name: Install Dependencies
