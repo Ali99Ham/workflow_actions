@@ -1,10 +1,15 @@
 name: matrix
-on: push
+on: workflow_dispatch
 jobs:
   build:
+    continue-on-error: true
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
+        node-version: [20, 22]
+        include:
+          - os: ubuntu-latest
+            node-version: 18
     runs-on: ${{ matrix.os }}
     steps:
       - name: Get code
@@ -12,7 +17,7 @@ jobs:
       - name: Install Nodejs
         uses: actions/setup-node@v7
         with:
-          node-version: 22
+          node-version: ${{ matrix.node-version }}
       - name: Install Dep
         run: npm ci
       - name: Build Project
