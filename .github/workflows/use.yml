@@ -8,6 +8,7 @@ jobs:
     secrets:
       DB_URL: ${{ secrets.PASSWORD }}
   deploy:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: print outputs from reusable workflow
