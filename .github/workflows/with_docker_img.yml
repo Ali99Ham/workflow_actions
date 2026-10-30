@@ -4,7 +4,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     container:
-      image: node-v22
+      image: node:22
       env:
         DB_URL: "db"
     steps:
