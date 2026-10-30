@@ -1,0 +1,12 @@
+name: withDocker
+on: push
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    container:
+      image: node-v22
+      env:
+        DB_URL: "db"
+    steps:
+      - name: print outputs from reusable workflow
+        run: echo deploying...
