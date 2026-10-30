@@ -1,15 +1,12 @@
 name: use
-on: push
+on: workflow_dispatch
 jobs:
-  build:
-    uses: ./.github/workflows/reusable.yml
-    with:
-      myVar: var_from_calling
-    secrets:
-      DB_URL: ${{ secrets.PASSWORD }}
   deploy:
-    needs: build
     runs-on: ubuntu-latest
+    container:
+      image: node-v22
+      env:
+        DB_URL: "db url"
     steps:
       - name: print outputs from reusable workflow
-        run: echo "${{ needs.build.outputs.my-value }}"
+        run: echo deploying...
