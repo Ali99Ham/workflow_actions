@@ -14,7 +14,7 @@ jobs:
       release-name: "${{ steps.version.outputs.app_version }}"
     steps:
       - name: use custom composite action
-        uses: ./.github/install-cached
+        uses: ./.github/actions/install-cached
 
       - name: Run ESLint
         run: npm run lint
