@@ -2,4 +2,4 @@ name: action with Node.js
 description: custom action with js file
 runs:
   using: "node24"
-  main: main
+  main: main.js
