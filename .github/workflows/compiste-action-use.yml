@@ -19,6 +19,9 @@ jobs:
       - name: use custom composite action
         uses: ./.github/actions/install-cached
 
+      - name: use custom js file
+        uses: ./.github/actions/s3-javascript
+
       - name: Run ESLint
         run: npm run lint
         continue-on-error: true
